@@ -1,4 +1,4 @@
-from meteosuisse.meteoswisse import meteosuisse
+from meteoswiss.meteoswiss import meteoswissApi
 
 import logging
 __name__ = 'meteo swisse api'

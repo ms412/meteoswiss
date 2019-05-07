@@ -30,12 +30,19 @@ class forcastRain(object):
 
     def querry(self):
         ms = meteoswiss.meteoswissApi()
-        ms.getStation(3000)
+        ms.getStationByAreaCode(3000)
+        ms.getStationByName('Bern')
+        ms.getStationDetails('305200')
+
+    def test(self):
+        ms = meteoswiss.meteoswissApi()
+        ms.getStationPrediction()
 
     def run(self):
         self.readConfig()
         self.startLogger()
-        self.querry()
+        #   self.querry()
+        self.test()
        # self.connect()
         #self.calls()
 

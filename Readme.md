@@ -1,5 +1,6 @@
 https://www.meteoswiss.admin.ch/home.html?tab=overview
 
+https://github.com/okaufmann/swiss-weather-api/blob/master/API.md
 
 Some more information about the API:
 

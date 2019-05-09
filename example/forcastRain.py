@@ -36,7 +36,10 @@ class forcastRain(object):
 
     def test(self):
         ms = meteoswiss.meteoswissApi()
-        ms.getStationPrediction()
+        id = ms.getStationByName('Bern')
+        print(str(id[0]))
+        path = ms.getStationPrediction(str(id[0]))
+        print(path)
 
     def run(self):
         self.readConfig()

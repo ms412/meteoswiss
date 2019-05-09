@@ -40,6 +40,7 @@ class forcastRain(object):
         print(str(id[0]))
         path = ms.getStationPrediction(str(id[0]))
         print(path)
+        ms.forcastRain(str(id[0]))
 
     def run(self):
         self.readConfig()

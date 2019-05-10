@@ -43,11 +43,26 @@ class forcastRain(object):
         print(ms.forcastRainByHour(str(id[0])))
         print( ms.forcastRainByDay(str(id[0])))
 
+    def measurement(self):
+        ms = meteoswiss.meteoswissApi()
+        id = ms.getStationByName('Bern')
+        print(str(id[0]))
+        print(ms.getStationMeasurement(str(id[0])))
+
+    def temperature(self):
+        ms = meteoswiss.meteoswissApi()
+        id = ms.getStationByName('Zollikofen')
+        print(str(id[0]))
+      #  print(ms.forcastTemperatureByDay(str(id[0])))
+        print(ms.forcastTemperatureByHour(str(id[0])))
+
     def run(self):
         self.readConfig()
         self.startLogger()
         #   self.querry()
-        self.test()
+     #   self.test()
+        self.measurement()
+        self.temperature()
        # self.connect()
         #self.calls()
 

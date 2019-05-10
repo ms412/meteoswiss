@@ -74,11 +74,21 @@ class location(base.apiClient):
         tree = html.fromstring(page.content)
 
         response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
-
         path = (response[0].attrib['data-json-url'])
 
 
-       # print(self._url + _path)
+        return self._url + path.replace('800100',stationId,1)
+
+    def getStationMeasurement(self,stationId='800100'):
+        print(stationId)
+        #        page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
+        page = requests.get(self._url)
+        tree = html.fromstring(page.content)
+
+        response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
+        path = (response[0].attrib['data-measurements-json-url'])
+
+        print(path)
         return self._url + path.replace('800100',stationId,1)
 
 

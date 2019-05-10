@@ -16,11 +16,11 @@ class location(base.apiClient):
 
     def getStationByAreaCode(self,plz):
         result = []
-        _plz = str(plz)[:2]
+        plz = str(plz)[:2]
 
-        _path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(_plz))
+        path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(plz))
 
-        response = self.getAPIcall(self._url + _path)
+        response = self.getAPIcall(self._url + path)
 
         if not response:
             _classLogger.error('cannot find Station')
@@ -36,9 +36,11 @@ class location(base.apiClient):
 
     def getStationByName(self,name):
         result = []
-        _name = name.lower()[:2]
+        name = name.lower()[:2]
 
-        response = self.getAPIcall('https://www.meteoswiss.admin.ch/etc/designs/meteoswiss/ajax/search/%s.json' % _name)
+        path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(name))
+
+        response = self.getAPIcall(self._url + path)
 
         if not response:
             _classLogger.error('cannot find Station')
@@ -55,7 +57,9 @@ class location(base.apiClient):
 
     def getStationDetails(self,stationId):
 
-        response = self.getAPIcall('https://www.meteosuisse.admin.ch/etc/designs/meteoswiss/ajax/location/%s.json' % stationId)
+        path = ('/etc/designs/meteoswiss/ajax/location/{}.json'.format (stationId))
+
+        response = self.getAPIcall(self._url + path)
 
         if not response:
             _classLogger.error('cannot find Station by Id; StationId: %s' % stationId)
@@ -68,14 +72,9 @@ class location(base.apiClient):
         #        page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
         page = requests.get(self._url)
         tree = html.fromstring(page.content)
-      #  print('Tree',tree)
 
         response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
 
-     #   for k,v in test[0].attrib.items():
-      #      print('Key:', k,'Value:', v)
-
-      #  print('xx',test[0].attrib['data-json-url'])
         path = (response[0].attrib['data-json-url'])
 
 

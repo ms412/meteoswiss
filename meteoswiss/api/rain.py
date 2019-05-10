@@ -12,31 +12,53 @@ class rain(object):
         print(rain)
         _classLogger.debug('TTTTTT')
 
-    def forcastRain(self,stationId):
-        rainList = {}
-        t = {}
+    def forcastRainByHour(self,stationId):
+
+        result = {}
+
         url = self.getStationPrediction(stationId)
         response = self.getAPIcall(url)
 
-        for x in response:
-            _tempList = (x['rainfall'])
-            for y in _tempList:
-                t[y[0]] = {'exp': y[1]}
-               # t[]
+        for list in response:
+            rainfall = (list['rainfall'])
+            variance = (list['variance_rain'])
+            timestamp = (list['min_date'])
 
-        for x in response:
-            _tempList = (x['variance_rain'])
-            for y in _tempList:
-                value = t[y[0]]
-                value['min'] = y[1]
-                value['max'] = y[2]
-                t[y[0]] = value
+            for idx, val in enumerate(rainfall):
+                exp = rainfall[idx][1]
+                min = variance[idx][1]
+                max = variance[idx][2]
 
+                result[val[0]] = {'exp': exp, 'min': min, 'max': max}
 
-            #    t['predicted'] = y[1]
-          #  rainList = rainList + _tempList
+#        print(json.dumps(result,ensure_ascii=False))
+        return result
 
-        print(json.dumps(t,ensure_ascii=False))
-        return t
+    def forcastRainByDay(self,stationId):
+
+        result = {}
+
+        url = self.getStationPrediction(stationId)
+        response = self.getAPIcall(url)
+
+        for list in response:
+            rainfall = (list['rainfall'])
+            variance = (list['variance_rain'])
+            timestamp = (list['min_date'])
+
+            exp = 0
+            min = 0
+            max = 0
+            for idx, val in enumerate(rainfall):
+                exp = exp + rainfall[idx][1]
+                min = min + variance[idx][1]
+                max = max + variance[idx][2]
+
+            result[timestamp] = {'exp' :exp, 'min' : min, 'max' :max}
+
+     #   print(json.dumps(result, ensure_ascii=False))
+
+        return result
+
 
 

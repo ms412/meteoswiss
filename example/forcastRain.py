@@ -51,10 +51,18 @@ class forcastRain(object):
 
     def temperature(self):
         ms = meteoswiss.meteoswissApi()
-        id = ms.getStationByName('Zollikofen')
-        print(str(id[0]))
-      #  print(ms.forcastTemperatureByDay(str(id[0])))
-        print(ms.forcastTemperatureByHour(str(id[0])))
+        id = ms.getStationByAreaCode('3052')
+        print(str(id))
+        print(ms.forcastTemperatureByDay(str(id[0])))
+       # print(ms.forcastTemperatureByHour(str(id[0])))
+
+    def sunshine(self):
+        ms = meteoswiss.meteoswissApi()
+        id = ms.getStationByAreaCode('3052')
+        print(str(id))
+        print(ms.forcastSunshineByDay(str(id[0])))
+        print(ms.forcastSunshineByHour(str(id[0])))
+
 
     def run(self):
         self.readConfig()
@@ -63,6 +71,7 @@ class forcastRain(object):
      #   self.test()
         self.measurement()
         self.temperature()
+        self.sunshine()
        # self.connect()
         #self.calls()
 

@@ -38,20 +38,32 @@ class temperature(object):
         response = self.getAPIcall(url)
 
         for list in response:
-            temperauter = (list['temperature'])
+            temperature = (list['temperature'])
             variance = (list['variance_range'])
             timestamp = (list['min_date'])
 
-            exp = 0
-            min = 0
+            min =0
             max = 0
             for idx, val in enumerate(temperature):
-                exp = exp + temperature[idx][1]
-                min = min + variance[idx][1]
-                max = max + variance[idx][2]
+             #   exp = exp + temperature[idx][1]
+              #  print(idx)
+                if idx == 0:
+                    min = variance[idx][1]
+                    max = variance[idx][2]
+            #        print('idx',idx)
 
-            result[timestamp] = {'exp' :exp, 'min' : min, 'max' :max}
+                if min >  variance[idx][1]:
+                    min =  variance[idx][1]
 
-     #   print(json.dumps(result, ensure_ascii=False))
+
+                if max <  variance[idx][2]:
+                    max =  variance[idx][2]
+
+             #   print(idx,min, max)
+
+
+            result[timestamp] = {'min' : min, 'max' :max}
+
+       # print(json.dumps(result, ensure_ascii=False))
 
         return result

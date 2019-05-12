@@ -60,5 +60,16 @@ class rain(object):
 
         return result
 
+    def currentRainfall(self,stationId):
+
+        result = ''
+
+        url = self.getMeasurement(stationId)
+       # print('xx',url)
+        response = self.getAPIcall(url)
+
+        for list in response:
+            result = list['rainfall'][-1]
 
 
+        return result

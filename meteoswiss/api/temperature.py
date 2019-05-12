@@ -67,3 +67,16 @@ class temperature(object):
        # print(json.dumps(result, ensure_ascii=False))
 
         return result
+
+    def currentTemperature(self,stationId):
+
+        result = ''
+
+        url = self.getMeasurement(stationId)
+        print('xx',url)
+        response = self.getAPIcall(url)
+
+        for list in response:
+            result = list['temperature'][-1]
+
+        return result

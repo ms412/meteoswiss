@@ -57,6 +57,20 @@ class sunshine(object):
 
         return result
 
+    def currentSunshine(self,stationId):
+
+        result = ''
+
+        url = self.getMeasurement(stationId)
+        print('xx',url)
+        response = self.getAPIcall(url)
+
+        for list in response:
+            result = list['sunshine'][-1]
+
+        return result
+
+
     def getSunset(self,stationId):
 
         result = {}

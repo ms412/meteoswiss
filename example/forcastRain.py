@@ -69,6 +69,11 @@ class forcastRain(object):
         ms.getSunset(120100)
         ms.getSunrise(305200)
         ms.getSunrise(120100)
+        print(ms.currentSunshine(305200))
+
+    def getMeasurement(self):
+        ms = meteoswiss.meteoswissApi()
+        ms.getMeasurement()
 
 
     def run(self):
@@ -78,8 +83,9 @@ class forcastRain(object):
      #   self.test()
        # self.measurement()
         #self.temperature()
-       # self.sunshine()
+      #  self.sunshine()
         self.getSunrise()
+       # self.getMeasurement()
        # self.connect()
         #self.calls()
 

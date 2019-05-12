@@ -80,7 +80,7 @@ class location(base.apiClient):
 
         return self._url + path.replace('800100',stationId,1)
 
-    def getStationMeasurement(self,stationId='800100'):
+    def getStationMeasurement(self,station='BER'):
        # print(stationId)
         #        page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
         page = requests.get(self._url)
@@ -89,8 +89,9 @@ class location(base.apiClient):
         response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
         path = (response[0].attrib['data-measurements-json-url'])
 
-        print(path)
-        return self._url + path.replace('800100',stationId,1)
+       # print(path)
+      #  print(self._url + path.replace('SMA',station,1))
+        return self._url + path.replace('SMA',station,1)
 
 
 
@@ -101,4 +102,17 @@ class location(base.apiClient):
         path = ('https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz={}'.format(stationId))
 
         return path
+
+    def getMeasurement(self,stationId='800100'):
+      #  /etc/designs/meteoswiss/ajax/location/305200.json
+      #/product/output/measured-values/homepage/version__20190512_0642/fr/GVE.json" data-measurements-json-url
+        response = self.getStationDetails(stationId)
+        station = response['station_id']
+
+        url = self.getStationMeasurement(station)
+      #  print('cc',url)
+
+      #  response = self.getAPIcall(url)
+     #   print(response)
+        return url
 

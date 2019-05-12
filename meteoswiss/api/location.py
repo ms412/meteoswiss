@@ -81,7 +81,7 @@ class location(base.apiClient):
         return self._url + path.replace('800100',stationId,1)
 
     def getStationMeasurement(self,stationId='800100'):
-        print(stationId)
+       # print(stationId)
         #        page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
         page = requests.get(self._url)
         tree = html.fromstring(page.content)
@@ -93,4 +93,12 @@ class location(base.apiClient):
         return self._url + path.replace('800100',stationId,1)
 
 
+
+    def getDetails(self,stationId='800100'):
+
+     #   path = ('/etc/designs/meteoswiss/ajax/location/{}.json'.format(stationId))
+
+        path = ('https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz={}'.format(stationId))
+
+        return path
 

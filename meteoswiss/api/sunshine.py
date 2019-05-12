@@ -56,3 +56,23 @@ class sunshine(object):
      #   print(json.dumps(result, ensure_ascii=False))
 
         return result
+
+    def getSunset(self,stationId):
+
+        result = {}
+
+        url = self.getDetails(stationId)
+        response = self.getAPIcall(url)
+
+        print(response['graph']['sunset'])
+        return
+
+    def getSunrise(self,stationId):
+
+        result = {}
+
+        url = self.getDetails(stationId)
+        response = self.getAPIcall(url)
+
+        print(response['graph']['sunrise'])
+        return

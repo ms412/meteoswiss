@@ -63,15 +63,23 @@ class forcastRain(object):
         print(ms.forcastSunshineByDay(str(id[0])))
         print(ms.forcastSunshineByHour(str(id[0])))
 
+    def getSunrise(self):
+        ms = meteoswiss.meteoswissApi()
+        ms.getSunset(305200)
+        ms.getSunset(120100)
+        ms.getSunrise(305200)
+        ms.getSunrise(120100)
+
 
     def run(self):
         self.readConfig()
         self.startLogger()
-        #   self.querry()
+        self.querry()
      #   self.test()
-        self.measurement()
-        self.temperature()
-        self.sunshine()
+       # self.measurement()
+        #self.temperature()
+       # self.sunshine()
+        self.getSunrise()
        # self.connect()
         #self.calls()
 

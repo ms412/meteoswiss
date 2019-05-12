@@ -82,3 +82,139 @@ And here are the descriptions of the weather conditions by ID:
 <string name="wettersymboltexte_7">sunny intervals, isolated sleet</string>
 <string name="wettersymboltexte_8">sunny intervals, snow showers</string>
 <string name="wettersymboltexte_9">overcast, some rain showers</string>
+
+Hardcoded URL's
+http://app-prod-static.meteoswiss.ch/	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/altitudeForecast.json	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/currentWeather.json	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/forecast_	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/forecast.json	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/generalForecast_	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/isobaren.jpg	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/meteo.cosmo.cloud.current.zip	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/meteo.cosmo.temp.current.zip	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/meteo.ir.alpen.current.zip	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/meteo.ir.europe.current.zip	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/meteo.radar.precip.current.zip	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/meteo.vis.schweiz.current.zip	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/other_warnings_	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/radarOverview.png	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/regionForecast.json	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/storm_bulletin_	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/warning_forecast_	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/warningOverview.jpg	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-static.meteoswiss.ch/warnings_	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/cloudFileList	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/forecast	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/forecast?lat	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/forecast?plz	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/irAlpenFileList	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/irEuropeFileList	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/overview	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/overview?lat	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/overview?plz	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/overview?wpplz=327000&ws;	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/plzDetail?plz	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/plzOverview?plz	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/precipitationFileList	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/register	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/temperatureFileList	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/verlaufPrognose?plz	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/verlauf?station	Not a known malware domain (scanned using Google Safe Browsing API)
+http://app-prod-ws.meteoswiss.ch/visSchweizFileList	Not a known malware domain (scanned using Google Safe Browsing API)
+http://checkip.dyndns.org	Not a known malware domain (scanned using Google Safe Browsing API)
+http://meteoswiss.ch/app	Not a known malware domain (scanned using Google Safe Browsing API)
+http://schemas.android.com/apk/res/android	Not a known malware domain (scanned using Google Safe Browsing API)
+http://schemas.android.com/apk/res/ch.admin.meteoswiss	Not a known malware domain (scanned using Google Safe Browsing API)
+http://smaapp-dev.ubique.ch:8080/meteoschweiz-ws/	Not a known malware domain (scanned using Google Safe Browsing API)
+http://smaapp.s3.amazonaws.com/	Not a known malware domain (scanned using Google Safe Browsing API)
+https://ssl.google-analytics.com/collect	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.google-analytics.com/collect	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/de/contact.html?referer	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/de/gefahren/details.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/de/legal.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/de/meteoschweiz/portrait.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/en/contact.html?referer	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/en/danger/details.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/en/legal.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/en/meteoswiss/portrait.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/fr/contact.html?referer	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/fr/dangers/details.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/fr/legal.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/fr/meteosuisse/portrait.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/it/contact.html?referer	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/it/legal.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/it/meteosvizzera/ritratto.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.meteoschweiz.admin.ch/web/it/pericoli/details.html	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.ubique.ch/	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.w3.org/1999/xlink	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.w3.org/2000/svg	Not a known malware domain (scanned using Google Safe Browsing API)
+http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd	Not a known malware domain (scanned using Google Safe Browsing API)
+
+
+http://
+http://%s
+http://hostname/?
+http://schemas.android.com/apk/res/android
+http://www.google-analytics.com
+http://www.meteoschweiz.admin.ch
+http://www.meteoschweiz.admin.ch/
+https://
+https://app-measurement.com/a
+https://app-prod-ws.meteoswiss-app.ch/v1/blog/comment
+https://app-prod-ws.meteoswiss-app.ch/v1/currentweather?ws=
+https://app-prod-ws.meteoswiss-app.ch/v1/forecast?plz=
+https://app-prod-ws.meteoswiss-app.ch/v1/hagel
+https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz=
+https://app-prod-ws.meteoswiss-app.ch/v1/plzOverview?plz=
+https://app-prod-ws.meteoswiss-app.ch/v1/register
+https://app-prod-ws.meteoswiss-app.ch/v1/registerq
+https://app-prod-ws.meteoswiss-app.ch/v1/stationOverview?station=
+https://app-prod-ws.meteoswiss-app.ch/v1/vorortdetail?plz=
+https://e.crashlytics.com/spi/v2/events
+https://logs.meteoswiss-app.ch/piwik.php
+https://pagead2.googlesyndication.com/pagead/gen_204?id=gmob-apps
+https://play.google.com/store/apps/details?id=ch.ti.oasi.android.airquality
+https://plus.google.com/
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/aha_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/altitudeForecast.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/animation_overview.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/blog/
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/blog/blog_homescreen_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/blog/blog_other_categories_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/blog/blog_overview_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/blog/blog_weather_today_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/currentPrecipitationHomescreen.png
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/currentWeather.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/currentWeatherHomescreen_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/current_ir_alpen_2_fileList.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/current_ir_europe_2_fileList.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/current_vis_schweiz_2_fileList.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/db.sqlite
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/dbinfo.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/forecast_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/forecast_homescreen.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/forecast_v4.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/generalForecast_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/healthHomescreenV2_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/isobaren_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/other_warnings_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/pollen_animation_overview.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/pollen_text_forecast_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/regionForecast_v3.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/sov_bcm_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/stationimages/
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/storm_bulletin2_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/street_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/warningOverviewHomescreen.json
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/warnings_with_outlook_with_naturalhazards_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/webcam_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/webcam_latest_
+https://s3-eu-central-1.amazonaws.com/app-prod-static-fra.meteoswiss-app.ch/v1/webcam_overview.json
+https://settings.crashlytics.com/spi/v2/platforms/android/apps/%s/settings
+https://ssl.google-analytics.com
+https://www.google.com
+https://www.googleapis.com/auth/games
+https://www.googleapis.com/auth/games_lite

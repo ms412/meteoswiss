@@ -11,7 +11,7 @@ class forcastRain(object):
         self._log = None
 
     def readConfig(self):
-        print('READCONFIG',self._configfile)
+       # print('READCONFIG',self._configfile)
         _cfg = ConfigObj(self._configfile)
 
         if bool(_cfg) is False:
@@ -25,14 +25,15 @@ class forcastRain(object):
         self._log = loghandler()
         self._log.handle(self._cfg_log.get('LOGMODE'), self._cfg_log)
         self._log.level(self._cfg_log.get('LOGLEVEL', 'DEBUG'))
-        self._log.critical('TEST')
+       # self._log.critical('TEST')
         return True
 
     def createObj(self):
         self._ms = meteoswiss.meteoswissApi()
-      #  ms.getStationByAreaCode(3000)
-       # ms.getStationByName('Bern')
-        #ms.getStationDetails('305200')
+        self._station1 = self._ms.getStationByName('Zermatt')[0]
+        self._station2 = self._ms.getStationByAreaCode(3053)[0]
+        print('Station 1:',self._station1)
+        print('Station 2:',self._station2)
 
     def test(self):
         ms = meteoswiss.meteoswissApi()
@@ -63,33 +64,27 @@ class forcastRain(object):
         print(ms.forcastSunshineByDay(str(id[0])))
         print(ms.forcastSunshineByHour(str(id[0])))
 
-    def getSunrise(self):
-        #ms = meteoswiss.meteoswissApi()
-        zol = self._ms.getStationByAreaCode('3052')
-        print('Zollikofen',zol)
-        gev = self._ms.getStationByName('Genève')
-        print('Geneve',gev)
-        print('Sunset Zollikofen')
-        print(self._ms.getSunset(zol[0]))
-        print('Sunset Geneve')
-        print(self._ms.getSunset(gev[0]))
-        print('Sunrise Zollikofen')
-        print(self._ms.getSunrise(zol[0]))
-        print('Sunrise Geneve')
-        print(self._ms.getSunrise(gev[0]))
-        print('Sunshine Forcast by Day Zollikofen')
-        print(self._ms.forcastSunshineByDay(zol[0]))
-        print('Current Sunshine Zollikofen')
-        print(self._ms.currentSunshine(zol[0]))
-        print('Measured Sunshine Zollikofen')
-        print(self._ms.historicalSunshine(zol[0]))
+    def Sunshine(self):
+        print('Sunset Station 1')
+        print(self._ms.getSunset(self._station1))
+        print('Sunset Station 2')
+        print(self._ms.getSunset(self._station2))
+        print('Sunrise Station 1')
+        print(self._ms.getSunrise(self._station1))
+        print('Sunrise Station 2')
+        print(self._ms.getSunrise(self._station2))
+        print('Sunshine Forcast by Day Station 1')
+        print(self._ms.forcastSunshineByDay(self._station1))
+        print('Current Sunshine Station 1')
+        print(self._ms.currentSunshine(self._station1))
+        print('Measured Sunshine Station 1')
+        print(self._ms.historicalSunshine(self._station1))
 
     def Wind(self):
-        station = self._ms.getStationByAreaCode('3052')[0]
-        print('Forcast wind speed by Hour and direction',self._ms.forcastWindByHour(station))
-        print('Forcast max wind speed by day',self._ms.forcastWindByDay(station))
-        print('Measured wind speed',self._ms.measuredWindSpeed(station))
-        print('Current Wind Speed',self._ms.currentWindSpeed(station))
+        print('Forcast wind speed by Hour and direction',self._ms.forcastWindByHour(self._station1))
+        print('Forcast max wind speed by day',self._ms.forcastWindByDay(self._station1))
+        print('Measured wind speed',self._ms.measuredWindSpeed(self._station1))
+        print('Current Wind Speed',self._ms.currentWindSpeed(self._station1))
 
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()
@@ -104,7 +99,7 @@ class forcastRain(object):
        # self.measurement()
         #self.temperature()
       #  self.sunshine()
-     #   self.getSunrise()
+        self.Sunshine()
         self.Wind()
        # self.getMeasurement()
        # self.connect()

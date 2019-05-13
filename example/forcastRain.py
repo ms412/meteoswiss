@@ -67,7 +67,7 @@ class forcastRain(object):
         #ms = meteoswiss.meteoswissApi()
         zol = self._ms.getStationByAreaCode('3052')
         print('Zollikofen',zol)
-        gev = self._ms.getStationByName('Geneve')
+        gev = self._ms.getStationByName('Genève')
         print('Geneve',gev)
         print('Sunset Zollikofen')
         print(self._ms.getSunset(zol[0]))
@@ -84,6 +84,13 @@ class forcastRain(object):
         print('Measured Sunshine Zollikofen')
         print(self._ms.historicalSunshine(zol[0]))
 
+    def Wind(self):
+        station = self._ms.getStationByAreaCode('3052')[0]
+        print('Forcast wind speed by Hour and direction',self._ms.forcastWindByHour(station))
+        print('Forcast max wind speed by day',self._ms.forcastWindByDay(station))
+        print('Measured wind speed',self._ms.measuredWindSpeed(station))
+        print('Current Wind Speed',self._ms.currentWindSpeed(station))
+
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()
         ms.getMeasurement()
@@ -97,7 +104,8 @@ class forcastRain(object):
        # self.measurement()
         #self.temperature()
       #  self.sunshine()
-        self.getSunrise()
+     #   self.getSunrise()
+        self.Wind()
        # self.getMeasurement()
        # self.connect()
         #self.calls()

@@ -36,20 +36,25 @@ class location(base.apiClient):
 
     def getStationByName(self,name):
         result = []
-        name = name.lower()[:2]
+        _name = name.lower()[:2]
 
-        path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(name))
+        path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(_name))
 
         response = self.getAPIcall(self._url + path)
 
         if not response:
             _classLogger.error('cannot find Station')
             return False
-      #  print(response)
+       # print(response)
         for x in response:
             z = x.split(';')
-            if name.lower() in z[5].lower():
-                result.append(z[0])
+            #if name.lower() in z[5].lower():
+            for s in z:
+              #  print(name.lower(),s.lower())
+                if name.lower() == s.lower():
+           #         print('found',s)
+               # result.append(z[0])
+                    result.append(z[0])
 
         _classLogger.debug('Station found %s' % result)
         return result

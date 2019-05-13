@@ -62,7 +62,7 @@ class sunshine(object):
         result = ''
 
         url = self.getMeasurement(stationId)
-        print('xx',url)
+      #  print('xx',url)
         response = self.getAPIcall(url)
 
         for list in response:
@@ -90,3 +90,28 @@ class sunshine(object):
 
         print(response['graph']['sunrise'])
         return
+
+    def historicalSunshine(self,stationId):
+
+        result = {}
+
+        url = self.getMeasurement(stationId)
+        response = self.getAPIcall(url)
+
+        for list in response:
+            sunshine = (list['sunshine'])
+            #   variance = (list['variance_rain'])
+           # timestamp = (list['min_date'])
+
+           # exp = 0
+            #     min = 0
+            #    max = 0
+            for idx, val in enumerate(sunshine):
+                result[sunshine[idx][0]] = sunshine[idx][1]
+
+             #   exp = exp + sunshine[idx][1]
+            #  min = min + variance[idx][1]
+            # max = max + variance[idx][2]
+
+         #   result[timestamp] = {'exp': exp}
+        return result

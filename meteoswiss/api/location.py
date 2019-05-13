@@ -76,9 +76,10 @@ class location(base.apiClient):
         response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
         path = (response[0].attrib['data-json-url'])
 
-        print(self._url + path.replace('800100',stationId,1))
+      #  print(path)
+       # print(self._url + path.replace('800100',str(stationId),1))
 
-        return self._url + path.replace('800100',stationId,1)
+        return self._url + path.replace('800100',str(stationId),1)
 
     def getStationMeasurement(self,station='BER'):
        # print(stationId)

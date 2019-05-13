@@ -65,11 +65,20 @@ class forcastRain(object):
 
     def getSunrise(self):
         ms = meteoswiss.meteoswissApi()
-        ms.getSunset(305200)
-        ms.getSunset(120100)
-        ms.getSunrise(305200)
-        ms.getSunrise(120100)
+        print('Sunset Zollikofen')
+        print(ms.getSunset(305200))
+        print('Sunset Geneve')
+        print(ms.getSunset(120100))
+        print('Sunrise Zollikofen')
+        print(ms.getSunrise(305200))
+        print('Sunrise Geneve')
+        print(ms.getSunrise(120100))
+        print('Sunshine Forcast by Day Zollikofen')
+        print(ms.forcastSunshineByDay(305200))
+        print('Current Sunshine Zollikofen')
         print(ms.currentSunshine(305200))
+        print('Measured Sunshine Zollikofen')
+        print(ms.historicalSunshine(305200))
 
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()

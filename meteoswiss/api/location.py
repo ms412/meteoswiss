@@ -16,9 +16,9 @@ class location(base.apiClient):
 
     def getStationByAreaCode(self,plz):
         result = []
-        plz = str(plz)[:2]
+        _plz = str(plz)[:2]
 
-        path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(plz))
+        path = ('/etc/designs/meteoswiss/ajax/search/{}.json'.format(_plz))
 
         response = self.getAPIcall(self._url + path)
 
@@ -45,10 +45,9 @@ class location(base.apiClient):
         if not response:
             _classLogger.error('cannot find Station')
             return False
-
+      #  print(response)
         for x in response:
             z = x.split(';')
-
             if name.lower() in z[5].lower():
                 result.append(z[0])
 

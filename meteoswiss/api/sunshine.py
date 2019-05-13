@@ -78,8 +78,8 @@ class sunshine(object):
         url = self.getDetails(stationId)
         response = self.getAPIcall(url)
 
-        print(response['graph']['sunset'])
-        return
+       # print(response['graph']['sunset'])
+        return response['graph']['sunset']
 
     def getSunrise(self,stationId):
 
@@ -88,8 +88,8 @@ class sunshine(object):
         url = self.getDetails(stationId)
         response = self.getAPIcall(url)
 
-        print(response['graph']['sunrise'])
-        return
+       # print(response['graph']['sunrise'])
+        return response['graph']['sunset']
 
     def historicalSunshine(self,stationId):
 

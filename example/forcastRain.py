@@ -28,11 +28,11 @@ class forcastRain(object):
         self._log.critical('TEST')
         return True
 
-    def querry(self):
-        ms = meteoswiss.meteoswissApi()
-        ms.getStationByAreaCode(3000)
-        ms.getStationByName('Bern')
-        ms.getStationDetails('305200')
+    def createObj(self):
+        self._ms = meteoswiss.meteoswissApi()
+      #  ms.getStationByAreaCode(3000)
+       # ms.getStationByName('Bern')
+        #ms.getStationDetails('305200')
 
     def test(self):
         ms = meteoswiss.meteoswissApi()
@@ -64,21 +64,25 @@ class forcastRain(object):
         print(ms.forcastSunshineByHour(str(id[0])))
 
     def getSunrise(self):
-        ms = meteoswiss.meteoswissApi()
+        #ms = meteoswiss.meteoswissApi()
+        zol = self._ms.getStationByAreaCode('3052')
+        print('Zollikofen',zol)
+        gev = self._ms.getStationByName('Geneve')
+        print('Geneve',gev)
         print('Sunset Zollikofen')
-        print(ms.getSunset(305200))
+        print(self._ms.getSunset(zol[0]))
         print('Sunset Geneve')
-        print(ms.getSunset(120100))
+        print(self._ms.getSunset(gev[0]))
         print('Sunrise Zollikofen')
-        print(ms.getSunrise(305200))
+        print(self._ms.getSunrise(zol[0]))
         print('Sunrise Geneve')
-        print(ms.getSunrise(120100))
+        print(self._ms.getSunrise(gev[0]))
         print('Sunshine Forcast by Day Zollikofen')
-        print(ms.forcastSunshineByDay(305200))
+        print(self._ms.forcastSunshineByDay(zol[0]))
         print('Current Sunshine Zollikofen')
-        print(ms.currentSunshine(305200))
+        print(self._ms.currentSunshine(zol[0]))
         print('Measured Sunshine Zollikofen')
-        print(ms.historicalSunshine(305200))
+        print(self._ms.historicalSunshine(zol[0]))
 
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()
@@ -88,7 +92,7 @@ class forcastRain(object):
     def run(self):
         self.readConfig()
         self.startLogger()
-        self.querry()
+        self.createObj()
      #   self.test()
        # self.measurement()
         #self.temperature()

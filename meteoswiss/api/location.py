@@ -1,5 +1,6 @@
 
 import re
+import json
 import requests
 from lxml import html, etree
 import logging
@@ -59,7 +60,7 @@ class location(base.apiClient):
         _classLogger.debug('Station found %s' % result)
         return result
 
-    def getStationDetails(self,stationId):
+    def getMeasurementStation(self,stationId):
 
         path = ('/etc/designs/meteoswiss/ajax/location/{}.json'.format (stationId))
 
@@ -111,7 +112,7 @@ class location(base.apiClient):
     def getMeasurement(self,stationId='800100'):
       #  /etc/designs/meteoswiss/ajax/location/305200.json
       #/product/output/measured-values/homepage/version__20190512_0642/fr/GVE.json" data-measurements-json-url
-        response = self.getStationDetails(stationId)
+        response = self.getMeasurementStation(stationId)
         station = response['station_id']
 
         url = self.getStationMeasurement(station)
@@ -121,12 +122,13 @@ class location(base.apiClient):
      #   print(response)
         return url
 
-    def getMeasurementV3(self):
+    def getMeasurementV3(self,stationId='800100'):
+        mesurementData = {}
         page = requests.get(self._url + '/home/messwerte.html')
         tree = html.fromstring(page.content)
 
         result = tree.get_element_by_id('measurementv3-dataview-tmpl')
-        print(type(result))
+       # print(type(result))
         _html= result.text_content().encode('utf-8')
         _html = _html.decode("utf-8")
 
@@ -135,6 +137,29 @@ class location(base.apiClient):
         result = re.search(regex,_html)
 
         if result:
-            print(result.group(0))
+            path = result.group(0)
+
+            station_id = self.getMeasurementStation(stationId)['station_id']
+            response = self.getAPIcall(self._url + path)['params']
+
+          #  mesurementData['measurementStation'] = response
+            for key1, item1 in response.items():
+               # print(key1)
+                dictTemp = {}
+                for key2, path in item1.items():
+
+                    path = path.replace('% selection.station %',station_id,1)
+                   # print('path',path)
+                   # print(key2, path)
+                    response = self.getAPIcall(self._url + path)['series']
+                    dictTemp[key2] = response
+                    #print(dictTemp)
+
+                mesurementData[key1]= dictTemp
+               # print('x',mesurementData)
+           # print(response)
+       # print(json.dumps(result, ensure_ascii=False))
+        return json.dumps(mesurementData, ensure_ascii=False)
+
 
 

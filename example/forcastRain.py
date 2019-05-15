@@ -34,7 +34,7 @@ class forcastRain(object):
         self._station2 = self._ms.getStationByAreaCode(3053)[0]
         print('Station 1:',self._station1)
         print('Station 2:',self._station2)
-        self._ms.getMeasurementV3()
+
 
     def test(self):
         ms = meteoswiss.meteoswissApi()
@@ -87,6 +87,9 @@ class forcastRain(object):
         print('Measured wind speed',self._ms.measuredWindSpeed(self._station1))
         print('Current Wind Speed',self._ms.currentWindSpeed(self._station1))
 
+    def getMeasurements(self):
+        print(self._ms.getMeasurementV3(self._station1))
+
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()
         ms.getMeasurement()
@@ -100,6 +103,7 @@ class forcastRain(object):
        # self.measurement()
         #self.temperature()
       #  self.sunshine()
+        self.getMeasurements()
         self.Sunshine()
         self.Wind()
        # self.getMeasurement()
@@ -109,5 +113,5 @@ class forcastRain(object):
 
 if __name__ == "__main__":
     fc = forcastRain('./forcastRain.cfg')
-    print(fc)
+   # print(fc)
     fc.run()

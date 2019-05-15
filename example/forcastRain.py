@@ -34,6 +34,7 @@ class forcastRain(object):
         self._station2 = self._ms.getStationByAreaCode(3053)[0]
         print('Station 1:',self._station1)
         print('Station 2:',self._station2)
+        self._ms.getMeasurementV3()
 
     def test(self):
         ms = meteoswiss.meteoswissApi()

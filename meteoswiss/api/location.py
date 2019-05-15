@@ -1,7 +1,7 @@
 
-
+import re
 import requests
-from lxml import html
+from lxml import html, etree
 import logging
 import meteoswiss.api.base as base
 
@@ -120,4 +120,21 @@ class location(base.apiClient):
       #  response = self.getAPIcall(url)
      #   print(response)
         return url
+
+    def getMeasurementV3(self):
+        page = requests.get(self._url + '/home/messwerte.html')
+        tree = html.fromstring(page.content)
+
+        result = tree.get_element_by_id('measurementv3-dataview-tmpl')
+        print(type(result))
+        _html= result.text_content().encode('utf-8')
+        _html = _html.decode("utf-8")
+
+        regex="\/product\/output\/measured-values-v3\/map\/version__[0-9]{6,8}_[0-9]{2,4}/en/chartPaths.json"
+
+        result = re.search(regex,_html)
+
+        if result:
+            print(result.group(0))
+
 

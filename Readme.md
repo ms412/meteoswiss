@@ -218,3 +218,6 @@ https://ssl.google-analytics.com
 https://www.google.com
 https://www.googleapis.com/auth/games
 https://www.googleapis.com/auth/games_lite
+
+
+ttps://www.meteoschweiz.admin.ch/product/output/measured-values-v3/map/version__20190513_1626/de/chartPaths.json

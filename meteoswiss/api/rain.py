@@ -16,7 +16,7 @@ class rain(object):
 
         result = {}
 
-        url = self.getStationPrediction(stationId)
+        url = self.getPrediction(stationId)
         response = self.getAPIcall(url)
 
         for list in response:
@@ -38,7 +38,7 @@ class rain(object):
 
         result = {}
 
-        url = self.getStationPrediction(stationId)
+        url = self.getPrediction(stationId)
         response = self.getAPIcall(url)
 
         for list in response:

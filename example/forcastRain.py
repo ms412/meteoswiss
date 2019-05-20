@@ -30,7 +30,7 @@ class forcastRain(object):
 
     def createObj(self):
         self._ms = meteoswiss.meteoswissApi()
-        self._station1 = self._ms.getStationByName('Zermatt')[0]
+        self._station1 = self._ms.getStationByVillage('Zermatt')[0]
         self._station2 = self._ms.getStationByAreaCode(3053)[0]
         print('Station 1:',self._station1)
         print('Station 2:',self._station2)
@@ -38,18 +38,18 @@ class forcastRain(object):
 
     def test(self):
         ms = meteoswiss.meteoswissApi()
-        id = ms.getStationByName('Bern')
+        id = ms.getStationByVillage('Bern')
         print(str(id[0]))
-        path = ms.getStationPrediction(str(id[0]))
+        path = ms.getPrediction(str(id[0]))
         print(path)
         print(ms.forcastRainByHour(str(id[0])))
         print( ms.forcastRainByDay(str(id[0])))
 
     def measurement(self):
         ms = meteoswiss.meteoswissApi()
-        id = ms.getStationByName('Bern')
+        id = ms.getStationByVillage('Bern')
         print(str(id[0]))
-        print(ms.getStationMeasurement(str(id[0])))
+        print(ms.getMeasurementByStationCode(str(id[0])))
 
     def temperature(self):
         ms = meteoswiss.meteoswissApi()
@@ -88,11 +88,13 @@ class forcastRain(object):
         print('Current Wind Speed',self._ms.currentWindSpeed(self._station1))
 
     def getMeasurements(self):
-        print(self._ms.getMeasurementV3(self._station1))
+      #  self._ms.getMeasurementV3(self._station1)
+        print(self._ms.windLast3days(self._station1))
+        print(self._ms.windLastYear(self._station1))
 
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()
-        ms.getMeasurement()
+        print(ms.getMeasurement())
 
 
     def run(self):
@@ -105,7 +107,7 @@ class forcastRain(object):
       #  self.sunshine()
         self.getMeasurements()
         self.Sunshine()
-        self.Wind()
+     #   self.Wind()
        # self.getMeasurement()
        # self.connect()
         #self.calls()

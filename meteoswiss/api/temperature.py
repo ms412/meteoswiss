@@ -12,7 +12,7 @@ class temperature(object):
 
         result = {}
 
-        url = self.getStationPrediction(stationId)
+        url = self.getPrediction(stationId)
         response = self.getAPIcall(url)
 
         for list in response:
@@ -34,7 +34,7 @@ class temperature(object):
 
         result = {}
 
-        url = self.getStationPrediction(stationId)
+        url = self.getPrediction(stationId)
         response = self.getAPIcall(url)
 
         for list in response:

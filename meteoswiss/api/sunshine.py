@@ -13,7 +13,7 @@ class sunshine(object):
 
         result = {}
 
-        url = self.getStationPrediction(stationId)
+        url = self.getPrediction(stationId)
         response = self.getAPIcall(url)
 
         for list in response:
@@ -35,7 +35,7 @@ class sunshine(object):
 
         result = {}
 
-        url = self.getStationPrediction(stationId)
+        url = self.getPrediction(stationId)
         response = self.getAPIcall(url)
 
         for list in response:
@@ -75,7 +75,7 @@ class sunshine(object):
 
         result = {}
 
-        url = self.getDetails(stationId)
+        url = self.getStationDetails(stationId)
         response = self.getAPIcall(url)
 
        # print(response['graph']['sunset'])
@@ -85,7 +85,7 @@ class sunshine(object):
 
         result = {}
 
-        url = self.getDetails(stationId)
+        url = self.getStationDetails(stationId)
         response = self.getAPIcall(url)
 
        # print(response['graph']['sunrise'])

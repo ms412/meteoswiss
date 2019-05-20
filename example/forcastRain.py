@@ -91,6 +91,8 @@ class forcastRain(object):
       #  self._ms.getMeasurementV3(self._station1)
         print(self._ms.windLast3days(self._station1))
         print(self._ms.windLastYear(self._station1))
+        print(self._ms.getWarningsOverview(self._station1))
+        print(self._ms.getWarningsOverview(self._station2))
 
     def getMeasurement(self):
         ms = meteoswiss.meteoswissApi()
@@ -105,8 +107,9 @@ class forcastRain(object):
        # self.measurement()
         #self.temperature()
       #  self.sunshine()
-        self.getMeasurements()
+
         self.Sunshine()
+        self.getMeasurements()
      #   self.Wind()
        # self.getMeasurement()
        # self.connect()

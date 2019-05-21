@@ -8,6 +8,29 @@ _classLogger = logging.getLogger(__name__)
 
 class pressure(object):
 
+     def pressureCurrent(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+       # print(response)
+
+        qfe = response['messwerte-luftdruck-qfe-10min']['days'][0]['data']
+        qnh = response['messwerte-luftdruck-qnh-10min']['days'][0]['data']
+        qff = response['messwerte-luftdruck-qff-10min']['days'][0]['data']
+        hpaA = response['messwerte-luftdruck-850hpa-flaeche-10min']['days'][0]['data']
+        hpaB = response['messwerte-luftdruck-700hpa-flaeche-10min']['days'][0]['data']
+      #  windSpeed = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][1]['data']
+       # windDir = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][2]
+       # windSpeedPeak = response['messwerte-wind-boeenspitze-kmh-10min']
+
+        #for idx, val in enumerate(qfe):
+          #  print(idx, val[0], val[1], qnh[idx][1], qff[idx][1], hpaA[idx][1], hpaB[idx][1])
+        result = {'qfe':qfe[0][1],'qnh':qnh[0][1],'qff':qff[0][1],'850hpa':hpaA[0][1],'700hpa':hpaB[0][1]}
+         #   result[val[0]] = x
+
+      #  print(json.dumps(result, ensure_ascii=False))
+        return result
+
      def pressureLast3days(self,stationId):
 
         result = {}

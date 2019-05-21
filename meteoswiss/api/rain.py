@@ -73,3 +73,38 @@ class rain(object):
 
 
         return result
+
+    def rainLast3days(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+
+        rainfall = response['messwerte-niederschlag-10min']['days'][0]['data']
+
+        for idx, val in enumerate(rainfall):
+         #   print(idx, val[0], val[1], rainfall[idx][1])
+            x = {'rain':val[1]}
+            result[val[0]] = x
+
+       # print(result)
+        return json.dumps(result, ensure_ascii=False)
+
+    def rainLastYear(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+        # print(response)
+
+        rainfall = response['messwerte-niederschlag-10min']['year'][0]['data']
+
+        for idx, val in enumerate(rainfall):
+            x = {'rain':val[1]}
+            result[val[0]] = x
+            #print(idx,windDir['data'][idx])
+          #  print(idx, val[0], val[1], windSpeedGusts['data'][idx][1]) #, windDir['data'][idx][1])
+        #    x = {'wind': val[1], 'gusts': windSpeedGusts['data'][idx][1]} #, 'dir': windDir['data'][idx][1]}
+         #   result[val[0]] = x
+
+         #print(result)
+        #return json.dumps(result, ensure_ascii=False)
+        return result

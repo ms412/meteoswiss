@@ -55,3 +55,16 @@ class pressure(object):
         return result
 
 
+#QNH oder QFF – Wo liegt der Unterschied?
+#Als QNH (Question Normal Height) bezeichnet man den auf Meereshöhe reduzierten
+#Luftdruck an einer Messstation. Die Umrechnung des Luftdrucks von Stations- auf
+#Meereshöhe basiert auf einem standardisierten vertikalen Temperaturverlauf, wobei
+#die Ausgangstemperatur der in der Aviatik gebräuchlichen Standardatmosphäre [ISA
+#= International Standard Atmosphäre] entnommen wird.
+#Als QFF bezeichnet man den auf Meereshöhe reduzierten Luftdruck an einer Messstation. Die Umrechnung des Luftdrucks von Stations- auf Meereshöhe basiert auf
+#einem standardisierten vertikalen Temperaturverlauf, wobei die Ausgangstemperatur
+#aus einer aktuellen Messung stammt.
+#Im Gegensatz zum QFF wird beim QNH als Temperaturwert nicht die aktuelle Messung, sondern die zur Ortshöhe korrespondierende ISA Temperatur verwendet. Das
+#QFF liegt im Allgemeinen näher bei der Realität als das QNH. Da die druckbasierten
+#Höhenmesser gemäss der ISA genormt sind, wird in der Aviatik aber vorwiegend das
+#QNH verwendet.

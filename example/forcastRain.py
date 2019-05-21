@@ -92,6 +92,10 @@ class forcastRain(object):
         print('Measured Rain last Days', self._ms.rainLast3days(self._station1))
         print ('Measured Rain last Year', self._ms.rainLastYear(self._station1))
 
+    def Temperature(self):
+       # self._ms.temperatureLast3days(self._station2)
+        self._ms.temperatureLastYear(self._station1)
+
     def getMeasurements(self):
       #  self._ms.getMeasurementV3(self._station1)
         print(self._ms.windLast3days(self._station1))
@@ -112,7 +116,8 @@ class forcastRain(object):
        # self.measurement()
         #self.temperature()
       #  self.sunshine()
-        self.Rain()
+        #self.Rain()
+        self.Temperature()
 
       #  self.Sunshine()
        # self.getMeasurements()

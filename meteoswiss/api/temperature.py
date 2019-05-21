@@ -80,3 +80,45 @@ class temperature(object):
             result = list['temperature'][-1]
 
         return result
+
+    def temperatureLast3days(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+       # print(response)
+
+        avr = response['messwerte-lufttemperatur-10min']['days'][0]['data']
+        min = response['messwerte-lufttemperatur-10min']['days'][1]['data']
+        max = response['messwerte-lufttemperatur-10min']['days'][2]['data']
+      #  windSpeed = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][1]['data']
+       # windDir = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][2]
+       # windSpeedPeak = response['messwerte-wind-boeenspitze-kmh-10min']
+
+        for idx, val in enumerate(avr):
+            print(idx, val[0], val[1], avr[idx][1], min[idx][1], max[idx][1])
+            x = {'avr':avr[idx][1],'min':min[idx][1],'max':max[idx][1]}
+            result[val[0]] = x
+
+        print(json.dumps(result, ensure_ascii=False))
+        return result
+
+    def temperatureLastYear(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+       # print(response)
+
+        avr = response['messwerte-lufttemperatur-10min']['year'][0]['data']
+      #  min = response['messwerte-lufttemperatur-10min']['year'][1]['data']
+       # max = response['messwerte-lufttemperatur-10min']['year'][2]['data']
+      #  windSpeed = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][1]['data']
+       # windDir = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][2]
+       # windSpeedPeak = response['messwerte-wind-boeenspitze-kmh-10min']
+
+        for idx, val in enumerate(avr):
+            print(idx, val[0], val[1])    #, avr[idx][1], min[idx][1], max[idx][1])
+            x = {'avr':avr[idx][1]} #,'min':min[idx][1],'max':max[idx][1]}
+            result[val[0]] = x
+
+        print(json.dumps(result, ensure_ascii=False))
+        return result

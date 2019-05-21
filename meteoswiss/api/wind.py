@@ -99,8 +99,8 @@ class wind(object):
             x = {'wind':val[1],'gusts':windSpeedGusts['data'][idx][1],'dir':windDir['data'][idx][1]}
             result[val[0]] = x
 
-       # print(result)
-        return json.dumps(result, ensure_ascii=False)
+       # print(json.dumps(result, ensure_ascii=False))
+        return result
 
     def windLastYear(self,stationId):
 

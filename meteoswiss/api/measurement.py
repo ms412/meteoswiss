@@ -93,19 +93,4 @@ class measurement(base.apiClient):
        # print( json.dumps(mesurementData, ensure_ascii=False))
         return mesurementData
 
-    def getWarningsOverview(self,stationId='800100'):
 
-        results= []
-
-        warningType = {
-            1:'Thunderstorm', 2:'Rain',11:'Flood',10:'ForestFire'
-        }
-
-        #https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz= 300500
-        response = self.getAPIcall('https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz={}'.format(stationId))
-
-        for item in response['warningsOverview']:
-            print(item,item.get('warnType',99))
-            results.append({'warnType':warningType.get(item['warnType'],'Unknown'),'warnLevel':item.get('warnLevel')})
-
-        return results

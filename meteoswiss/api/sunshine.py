@@ -115,3 +115,35 @@ class sunshine(object):
 
          #   result[timestamp] = {'exp': exp}
         return result
+
+    def sunshineLast3Days(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+       # print(response)
+
+        sunshine = response['messwerte-sonnenscheindauer-10min']['days'][0]['data']
+
+        for idx, val in enumerate(sunshine):
+          #  print(idx, val[0], val[1], qnh[idx][1], qff[idx][1], hpaA[idx][1], hpaB[idx][1])
+            x = {'min':val[1]}
+            result[val[0]] = x
+
+        print(json.dumps(result, ensure_ascii=False))
+        return result
+
+    def sunshineLastYear(self,stationId):
+
+        result = {}
+        response = self.getMeasurementV3(stationId)
+       # print(response)
+
+        sunshine = response['messwerte-sonnenscheindauer-10min']['year'][0]['data']
+
+        for idx, val in enumerate(sunshine):
+          #  print(idx, val[0], val[1], qnh[idx][1], qff[idx][1], hpaA[idx][1], hpaB[idx][1])
+            x = {'min':val[1]}
+            result[val[0]] = x
+
+        print(json.dumps(result, ensure_ascii=False))
+        return result

@@ -91,7 +91,7 @@ class forcastRain(object):
 
     def Rain(self):
         print('Forcast Rain by Hour', self._ms.forcastRainByDay(self._station1))
-        print('Measured Rain last Days', self._ms.rainLast3days(self._station1))
+        print('Measured Rain last Days', self._ms.rainLast3Days(self._station1))
         print ('Measured Rain last Year', self._ms.rainLastYear(self._station1))
 
     def Temperature(self):
@@ -99,9 +99,14 @@ class forcastRain(object):
         self._ms.temperatureLastYear(self._station1)
 
     def Pressure(self):
-        print('Pressur during last 3 days',self._ms.pressureLast3days(self._station2))
+        print('Pressur during last 3 days',self._ms.pressureLast3Days(self._station2))
         print('Pressur during last year',self._ms.pressureLastYear(self._station2))
         print('Pressur current',self._ms.pressureCurrent(self._station2))
+
+    def Humidity(self):
+        print('Current humidity',self._ms.humiditCurrent(self._station1))
+        print('Humidity last 3 days', self._ms.humidityLast3Days(self._station2))
+        print('Humidity last year', self._ms.humidityLastYear(self._station2))
 
     def getMeasurements(self):
       #  self._ms.getMeasurementV3(self._station1)
@@ -126,6 +131,7 @@ class forcastRain(object):
         #self.Rain()
         #self.Temperature()
         self.Pressure()
+        self.Humidity()
 
      #   self.Sunshine()
        # self.getMeasurements()

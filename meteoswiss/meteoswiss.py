@@ -5,6 +5,7 @@ from meteoswiss.api.temperature import temperature
 from meteoswiss.api.sunshine import sunshine
 from meteoswiss.api.wind import wind
 from meteoswiss.api.pressure import pressure
+from meteoswiss.api.humidity import humidity
 from meteoswiss.api.measurement import measurement
 from meteoswiss.api.warning import warning
 
@@ -13,6 +14,7 @@ class meteoswissApi(location,
                     warning,
                     rain,
                     pressure,
+                    humidity,
                     temperature,
                     sunshine,
                     wind):

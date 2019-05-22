@@ -83,7 +83,7 @@ class wind(object):
 
         return result
 
-    def windLast3days(self,stationId):
+    def windLast3Days(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

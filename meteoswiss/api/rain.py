@@ -74,7 +74,7 @@ class rain(object):
 
         return result
 
-    def rainLast3days(self,stationId):
+    def rainLast3Days(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

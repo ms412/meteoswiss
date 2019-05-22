@@ -81,7 +81,7 @@ class temperature(object):
 
         return result
 
-    def temperatureLast3days(self,stationId):
+    def temperatureLast3Days(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

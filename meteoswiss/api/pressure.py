@@ -31,7 +31,7 @@ class pressure(object):
       #  print(json.dumps(result, ensure_ascii=False))
         return result
 
-     def pressureLast3days(self,stationId):
+     def pressureLast3Days(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

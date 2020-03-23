@@ -3,55 +3,61 @@ import re
 import json
 import requests
 from lxml import html, etree
+from datetime import datetime
 import logging
 import meteoswiss.api.base as base
 
 _classLogger = logging.getLogger(__name__)
 
 
-
 class warning(base.apiClient):
 
-    def getWarningOverview(self,stationId='800100'):
+    def  warningCurrent(self,stationId='800100'):
+        _result = {}
 
-        results= []
+        _region = self.getWarnRegion(stationId)
 
-        warningType = {
-            1:'Thunderstorm', 2:'Rain',11:'Flood',10:'ForestFire'
-        }
+        _now = datetime.now()
+        _today = _now.strftime("%Y%m%d")
+        _today24h = _today +"_24h"
+        _rawData = self.getWarning(stationId)['days'][_today24h]['hazards']
 
-        #https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz= 300500
-        response = self.getAPIcall('https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz={}'.format(stationId))
+        _result[_today] = self._warningFilterHelper(_rawData,_region)
 
-     #   print(json.dumps(response, ensure_ascii=False))
+        return _result
 
-        for item in response['warningsOverview']:
-          #  print(item,item.get('warnType',99))
-            results.append({'warnType':warningType.get(item['warnType'],'Unknown'),'warnLevel':item.get('warnLevel')})
+    def warningForcast(self, stationId='800100'):
+        _result = {}
 
-        return results
+        _region = self.getWarnRegion(stationId)
 
-    def getWarning(self,stationId='800100'):
+        _now = datetime.now()
+        _dateString = _now.strftime("%Y%m%d")
+        _rawData = self.getWarning(stationId)['days']
 
-        results= []
+        for key,item in _rawData.items():
+            if len(key) > 8:
+                _date = _dateString
+               # _result[_dateString] = {}
+            else:
+                _date = key
+              #  _result[_da] = {}
 
-        warningType = {
-            1:'Thunderstorm', 2:'Rain',11:'Flood',10:'ForestFire'
-        }
+            _result[_date] = self._warningFilterHelper(item['hazards'],_region)
 
-      #  self._appUrl = 'https://app-prod-ws.meteoswiss-app.ch'
-        #https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz= 300500
-        response = self.getAPIcall('https://app-prod-ws.meteoswiss-app.ch/v1/plzDetail?plz=' + str(stationId))
+        return _result
 
-       # print(json.dumps(response, ensure_ascii=False))
+    def _warningFilterHelper(self, data, region):
+        _result = {}
 
-        for item in response['warnings']:
-         #   print(item,item.get('warnType',99))
-            results.append({'warnType':warningType.get(item['warnType'],'Unknown'),
-                            'warnLevel':item.get('warnLevel'),
-                            'validFrom':item.get('validFrom'),
-                            'validTo' :item.get('validTo'),
-                            'text' :item.get('text')
-                            })
+        for key,item in data.items():
+            if item is not None:
+                _result[key] = {}
+                for value in item:
+                    if set(region).intersection(value['areas']):
+                        _result[key]['LEVEL'] = value['warnlevel']
+                        _result[key]['TYPE'] = value['warn_type']
+                        _result[key]['ONSET'] = value['onset']
+                        _result[key]['EXPIRE'] = value['expires']
 
-        return results
+        return _result

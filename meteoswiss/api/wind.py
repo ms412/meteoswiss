@@ -8,7 +8,7 @@ _classLogger = logging.getLogger(__name__)
 
 class wind(object):
 
-    def forcastWindByHour(self,stationId):
+    def windForcastByHour(self,stationId):
 
         result = {}
 
@@ -33,7 +33,7 @@ class wind(object):
       #  print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def forcastWindByDay(self,stationId):
+    def windForcastByDay(self,stationId):
 
         result = {}
 
@@ -56,22 +56,7 @@ class wind(object):
 
         return result
 
-    def measuredWindSpeed(self,stationId):
-
-        result = {}
-
-        url = self.getMeasurement(stationId)
-        response = self.getAPIcall(url)
-
-        for list in response:
-            wind = (list['wind']['data'])
-
-            for idx, val in enumerate(wind):
-                result[wind[idx][0]] = wind[idx][1]
-
-        return result
-
-    def currentWindSpeed(self,stationId):
+    def windCurrent(self,stationId):
 
         result = ''
 

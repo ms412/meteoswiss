@@ -81,5 +81,3 @@ class location(base.apiClient):
 
         return path
 
-
-

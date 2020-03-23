@@ -1,9 +1,11 @@
-
+import os
+import time
 import re
 import json
 import requests
 from lxml import html, etree
 import logging
+from bs4 import BeautifulSoup
 import meteoswiss.api.base as base
 
 _classLogger = logging.getLogger(__name__)
@@ -11,6 +13,8 @@ _classLogger = logging.getLogger(__name__)
 
 
 class measurement(base.apiClient):
+    _storeDanger = {}
+
     def __init__(self):
         self._url = 'https://www.meteoswiss.admin.ch'
 
@@ -44,6 +48,7 @@ class measurement(base.apiClient):
       #  /etc/designs/meteoswiss/ajax/location/305200.json
       #/product/output/measured-values/homepage/version__20190512_0642/fr/GVE.json" data-measurements-json-url
         response = self.getStation(stationId)
+   #     print('bb',response)
         station = response['station_id']
 
         url = self.getMeasurementByStationCode(station)
@@ -54,6 +59,26 @@ class measurement(base.apiClient):
         return url
 
     def getMeasurementV3(self,stationId='800100'):
+
+        if os.path.exists('data.txt'):
+            print('file does exist')
+
+            if time.time() - os.path.getmtime('data.txt')> 300:
+                print('read file')
+            #  with open('data.txt', 'w') as outfile:
+           #     json.dump(mesurementData, outfile)
+                with open('data.txt') as json_file:
+                    measurementData = json.load(json_file)
+            else:
+                measurementData = self.updateData(stationId)
+        else:
+            measurementData = self.updateData(stationId)
+
+        return measurementData
+
+
+    def updateData(self,stationId='800100'):
+        print('file does not exist')
         mesurementData = {}
         page = requests.get(self._url + '/home/messwerte.html')
         tree = html.fromstring(page.content)
@@ -82,6 +107,8 @@ class measurement(base.apiClient):
                     path = path.replace('% selection.station %',station_id,1)
                    # print('path',path)
                    # print(key2, path)
+                   # t = os.path.getmtime('data.txt')
+                    #print('time',t)
                     response = self.getAPIcall(self._url + path)['series']
                     dictTemp[key2] = response
                     #print(dictTemp)
@@ -91,6 +118,31 @@ class measurement(base.apiClient):
            # print(response)
        # print(json.dumps(result, ensure_ascii=False))
        # print( json.dumps(mesurementData, ensure_ascii=False))
+
+        with open('data.txt', 'w') as outfile:
+            json.dump(mesurementData, outfile)
+        #print('Return Date',mesurementData)
         return mesurementData
 
+    def getWarnRegion(self,stationID='800100'):
+        return self.getStation(stationID)['warn_region_ids']
 
+
+    def getWarning(self,stationID='800100'):
+        _page = requests.get(self._url + '/home.html?tab=alarm')
+        soup = BeautifulSoup(_page.content, 'html.parser')
+        _tag = (soup.find_all(id="dangers-map"))[0]
+        _path = _tag['data-json-url']
+
+        # if object is in store don't load again
+        _storeFile = self._storeDanger.get('PATH',False)
+        if _storeFile != _path:
+            _data = self.getAPIcall(self._url + _path)
+            self._storeDanger['PATH'] = _path
+            self._storeDanger['DATA'] = _data
+     #       print('load')
+        else:
+            _data = self._storeDanger['DATA']
+     #       print('notload')
+
+        return _data

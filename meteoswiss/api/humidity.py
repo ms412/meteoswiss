@@ -8,14 +8,14 @@ _classLogger = logging.getLogger(__name__)
 
 class humidity(object):
 
-     def humiditCurrent(self,stationId):
+     def humidityCurrent(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
 
         humidity = response['messwerte-luftfeuchtigkeit-10min']['days'][0]['data']
 
-        result = {'humidity':humidity[0][1],'date':humidity[0][0]}
+        result = [humidity[-1][0],humidity[-1][1]]
 
         return result
 

@@ -9,7 +9,7 @@ _classLogger = logging.getLogger(__name__)
 class sunshine(object):
 
 
-    def forcastSunshineByHour(self,stationId):
+    def sunforcastyHour(self,stationId):
 
         result = {}
 
@@ -31,7 +31,7 @@ class sunshine(object):
 #        print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def forcastSunshineByDay(self,stationId):
+    def sunforcastByDay(self,stationId):
 
         result = {}
 
@@ -57,7 +57,7 @@ class sunshine(object):
 
         return result
 
-    def currentSunshine(self,stationId):
+    def sunCurrent(self,stationId):
 
         result = ''
 
@@ -65,13 +65,14 @@ class sunshine(object):
       #  print('xx',url)
         response = self.getAPIcall(url)
 
+
         for list in response:
             result = list['sunshine'][-1]
 
         return result
 
 
-    def getSunset(self,stationId):
+    def sunRiseForcast5Days(self,stationId):
 
         result = {}
 
@@ -81,7 +82,7 @@ class sunshine(object):
        # print(response['graph']['sunset'])
         return response['graph']['sunset']
 
-    def getSunrise(self,stationId):
+    def sunSetForcast5Days(self,stationId):
 
         result = {}
 
@@ -89,9 +90,9 @@ class sunshine(object):
         response = self.getAPIcall(url)
 
        # print(response['graph']['sunrise'])
-        return response['graph']['sunset']
+        return response['graph']['sunrise']
 
-    def historicalSunshine(self,stationId):
+    def sunHistorical(self,stationId):
 
         result = {}
 
@@ -116,7 +117,7 @@ class sunshine(object):
          #   result[timestamp] = {'exp': exp}
         return result
 
-    def sunshineLast3Days(self,stationId):
+    def sunLast3Days(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
@@ -132,7 +133,7 @@ class sunshine(object):
         print(json.dumps(result, ensure_ascii=False))
         return result
 
-    def sunshineLastYear(self,stationId):
+    def sunLastYear(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

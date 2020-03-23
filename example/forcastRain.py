@@ -128,7 +128,7 @@ class forcastRain(object):
        # self.measurement()
         #self.temperature()
       #  self.sunshine()
-        #self.Rain()
+        self.Rain()
         #self.Temperature()
         self.Pressure()
         self.Humidity()

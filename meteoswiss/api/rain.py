@@ -12,7 +12,7 @@ class rain(object):
         print(rain)
         _classLogger.debug('TTTTTT')
 
-    def forcastRainByHour(self,stationId):
+    def rainforcastByHour(self,stationId):
 
         result = {}
 
@@ -34,7 +34,7 @@ class rain(object):
 #        print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def forcastRainByDay(self,stationId):
+    def rainforcastByDay(self,stationId):
 
         result = {}
 
@@ -60,7 +60,7 @@ class rain(object):
 
         return result
 
-    def currentRainfall(self,stationId):
+    def rainCurrent(self,stationId):
 
         result = ''
 

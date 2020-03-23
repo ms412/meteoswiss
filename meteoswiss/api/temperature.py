@@ -8,7 +8,7 @@ _classLogger = logging.getLogger(__name__)
 
 class temperature(object):
 
-    def forcastTemperatureByHour(self,stationId):
+    def temperaturForcastByHour(self,stationId):
 
         result = {}
 
@@ -30,7 +30,7 @@ class temperature(object):
 #        print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def forcastTemperatureByDay(self,stationId):
+    def temperaturForcastByDay(self,stationId):
 
         result = {}
 
@@ -68,7 +68,7 @@ class temperature(object):
 
         return result
 
-    def currentTemperature(self,stationId):
+    def temperatureCurrent(self,stationId):
 
         result = ''
 

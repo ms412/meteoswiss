@@ -8,7 +8,7 @@ _classLogger = logging.getLogger(__name__)
 
 class temperature(object):
 
-    def temperaturForcastByHour(self,stationId):
+    def temperatureForcastWeek(self,stationId):
 
         result = {}
 
@@ -30,7 +30,7 @@ class temperature(object):
 #        print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def temperaturForcastByDay(self,stationId):
+    def temperatureForcastWeekold(self,stationId):
 
         result = {}
 
@@ -42,27 +42,30 @@ class temperature(object):
             variance = (list['variance_range'])
             timestamp = (list['min_date'])
 
-            min =0
-            max = 0
+        #    min =0
+         #   max = 0
             for idx, val in enumerate(temperature):
+                min = variance[idx][1]
+                max = variance[idx][2]
+                result[timestamp] = {'min': min, 'max': max}
              #   exp = exp + temperature[idx][1]
               #  print(idx)
-                if idx == 0:
-                    min = variance[idx][1]
-                    max = variance[idx][2]
+            #    if idx == 0:
+             #       min = variance[idx][1]
+              #      max = variance[idx][2]
             #        print('idx',idx)
 
-                if min >  variance[idx][1]:
-                    min =  variance[idx][1]
+               # if min >  variance[idx][1]:
+                #    min =  variance[idx][1]
 
 
-                if max <  variance[idx][2]:
-                    max =  variance[idx][2]
+                #if max <  variance[idx][2]:
+                 #   max =  variance[idx][2]
 
              #   print(idx,min, max)
 
 
-            result[timestamp] = {'min' : min, 'max' :max}
+          #  result[timestamp] = {'min' : min, 'max' :max}
 
        # print(json.dumps(result, ensure_ascii=False))
 
@@ -81,44 +84,35 @@ class temperature(object):
 
         return result
 
-    def temperatureLast3Days(self,stationId):
+    def temperatureHistory3d(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
        # print(response)
 
         avr = response['messwerte-lufttemperatur-10min']['days'][0]['data']
-        min = response['messwerte-lufttemperatur-10min']['days'][1]['data']
-        max = response['messwerte-lufttemperatur-10min']['days'][2]['data']
-      #  windSpeed = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][1]['data']
-       # windDir = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][2]
-       # windSpeedPeak = response['messwerte-wind-boeenspitze-kmh-10min']
+        min = response['messwerte-lufttemperatur-24h-min-1h']['days'][0]['data']
+        max = response['messwerte-lufttemperatur-24h-max-1h']['days'][0]['data']
 
         for idx, val in enumerate(avr):
             print(idx, val[0], val[1], avr[idx][1], min[idx][1], max[idx][1])
             x = {'avr':avr[idx][1],'min':min[idx][1],'max':max[idx][1]}
             result[val[0]] = x
 
-        print(json.dumps(result, ensure_ascii=False))
+        #print(json.dumps(result, ensure_ascii=False))
         return result
 
-    def temperatureLastYear(self,stationId):
+    def temperatureHistory1y(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
-       # print(response)
 
         avr = response['messwerte-lufttemperatur-10min']['year'][0]['data']
-      #  min = response['messwerte-lufttemperatur-10min']['year'][1]['data']
-       # max = response['messwerte-lufttemperatur-10min']['year'][2]['data']
-      #  windSpeed = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][1]['data']
-       # windDir = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][2]
-       # windSpeedPeak = response['messwerte-wind-boeenspitze-kmh-10min']
+        min = response['messwerte-lufttemperatur-24h-min-1h']['year'][0]['data']
+        max = response['messwerte-lufttemperatur-24h-max-1h']['year'][0]['data']
 
         for idx, val in enumerate(avr):
-            print(idx, val[0], val[1])    #, avr[idx][1], min[idx][1], max[idx][1])
-            x = {'avr':avr[idx][1]} #,'min':min[idx][1],'max':max[idx][1]}
+            x = {'avr':avr[idx][1],'min':min[idx][1],'max':max[idx][1]}
             result[val[0]] = x
 
-        print(json.dumps(result, ensure_ascii=False))
         return result

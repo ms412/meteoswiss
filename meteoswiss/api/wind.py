@@ -8,7 +8,7 @@ _classLogger = logging.getLogger(__name__)
 
 class wind(object):
 
-    def windForcastByHour(self,stationId):
+    def windForcastWeek(self,stationId):
 
         result = {}
 
@@ -18,9 +18,11 @@ class wind(object):
         for list in response:
             wind = (list['wind']['data'])
             direction = (list['wind']['symbols'])
+            gusts = (list['wind_gust_peak']['data'])
 
             for idx, val in enumerate(wind):
-                force = wind[idx][1]
+                _wind = wind[idx][1]
+                _gusts = gusts[idx][1]
                 if idx % 2: #ungerade
                     dir = direction[idx_new]['symbol_id']
                    # print(dir)
@@ -28,12 +30,12 @@ class wind(object):
                     idx_new = int(idx / 2)
                     dir = direction[idx_new]['symbol_id']
 
-                result[val[0]] = {'dir': dir, 'force': force}
+                result[val[0]] = {'dir': dir, 'wind': _wind, 'gusts': _gusts}
 
       #  print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def windForcastByDay(self,stationId):
+    def windForcastWeekold(self,stationId):
 
         result = {}
 
@@ -68,11 +70,11 @@ class wind(object):
 
         return result
 
-    def windLast3Days(self,stationId):
+    def windHistory3d(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
-       # print(response)
+        #print(response)
 
         windSpeedGusts = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][0]
         windSpeed = response['messwerte-windgeschwindigkeit-kmh-10min']['days'][1]['data']
@@ -80,14 +82,14 @@ class wind(object):
         windSpeedPeak = response['messwerte-wind-boeenspitze-kmh-10min']
 
         for idx, val in enumerate(windSpeed):
-            print(idx, val[0], val[1], windSpeedGusts['data'][idx][1], windDir['data'][idx][1])
+        #    print(idx, val[0], val[1], windSpeedGusts['data'][idx][1], windDir['data'][idx][1])
             x = {'wind':val[1],'gusts':windSpeedGusts['data'][idx][1],'dir':windDir['data'][idx][1]}
             result[val[0]] = x
 
        # print(json.dumps(result, ensure_ascii=False))
         return result
 
-    def windLastYear(self,stationId):
+    def windHistory1y(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

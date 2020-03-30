@@ -19,7 +19,7 @@ class humidity(object):
 
         return result
 
-     def humidityLast3Days(self,stationId):
+     def humidityHistory3d(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
@@ -34,7 +34,7 @@ class humidity(object):
       #  print(json.dumps(result, ensure_ascii=False))
         return result
 
-     def humidityLastYear(self,stationId):
+     def humidityHistory1y(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

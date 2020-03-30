@@ -12,7 +12,29 @@ class rain(object):
         print(rain)
         _classLogger.debug('TTTTTT')
 
-    def rainforcastByHour(self,stationId):
+    def rainforcastToday(self,stationId):
+
+        result = {}
+
+        url = self.getPrediction(stationId)
+        response = self.getAPIcall(url)
+
+        list = response[0]
+        rainfall = (list['rainfall'])
+        variance = (list['variance_rain'])
+        #    timestamp = (list['min_date'])
+
+        for idx, val in enumerate(rainfall):
+            exp = rainfall[idx][1]
+            min = variance[idx][1]
+            max = variance[idx][2]
+
+            result[val[0]] = {'exp': exp, 'min': min, 'max': max}
+
+#        print(json.dumps(result,ensure_ascii=False))
+        return result
+
+    def rainforcastWeek(self,stationId):
 
         result = {}
 
@@ -22,41 +44,13 @@ class rain(object):
         for list in response:
             rainfall = (list['rainfall'])
             variance = (list['variance_rain'])
-            timestamp = (list['min_date'])
 
             for idx, val in enumerate(rainfall):
                 exp = rainfall[idx][1]
                 min = variance[idx][1]
                 max = variance[idx][2]
 
-                result[val[0]] = {'exp': exp, 'min': min, 'max': max}
-
-#        print(json.dumps(result,ensure_ascii=False))
-        return result
-
-    def rainforcastByDay(self,stationId):
-
-        result = {}
-
-        url = self.getPrediction(stationId)
-        response = self.getAPIcall(url)
-
-        for list in response:
-            rainfall = (list['rainfall'])
-            variance = (list['variance_rain'])
-            timestamp = (list['min_date'])
-
-            exp = 0
-            min = 0
-            max = 0
-            for idx, val in enumerate(rainfall):
-                exp = exp + rainfall[idx][1]
-                min = min + variance[idx][1]
-                max = max + variance[idx][2]
-
-            result[timestamp] = {'exp' :exp, 'min' : min, 'max' :max}
-
-     #   print(json.dumps(result, ensure_ascii=False))
+                result[val[0]] = {'exp' :exp, 'min' : min, 'max' :max}
 
         return result
 
@@ -74,7 +68,7 @@ class rain(object):
 
         return result
 
-    def rainLast3Days(self,stationId):
+    def rainHistory3d(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
@@ -87,9 +81,10 @@ class rain(object):
             result[val[0]] = x
 
        # print(result)
-        return json.dumps(result, ensure_ascii=False)
+      #  return json.dumps(result, ensure_ascii=False)
+        return result
 
-    def rainLastYear(self,stationId):
+    def rainHistory1y(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

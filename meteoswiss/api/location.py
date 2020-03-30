@@ -15,6 +15,7 @@ class location(base.apiClient):
     def __init__(self):
         self._url = 'https://www.meteoswiss.admin.ch'
 
+
     def getStationByAreaCode(self,plz):
         result = []
         _plz = str(plz)[:2]

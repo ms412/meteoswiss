@@ -12,6 +12,7 @@ STATE = {'1':'sonnig','2':'ziemlich sonnig','3':'teilweise sonnig','4':'wechseln
 
 class  apiClient(object):
 
+
     def getAPIcall(self,url):
 
         try:

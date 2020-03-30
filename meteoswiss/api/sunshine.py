@@ -9,17 +9,18 @@ _classLogger = logging.getLogger(__name__)
 class sunshine(object):
 
 
-    def sunforcastyHour(self,stationId):
+    def sunforcastToday(self,stationId):
 
         result = {}
 
         url = self.getPrediction(stationId)
+        print(url)
         response = self.getAPIcall(url)
 
         for list in response:
             sunshine = (list['sunshine'])
          #   variance = (list['variance_rain'])
-            timestamp = (list['min_date'])
+         #   timestamp = (list['min_date'])
 
             for idx, val in enumerate(sunshine):
                 exp = sunshine[idx][1]
@@ -31,7 +32,7 @@ class sunshine(object):
 #        print(json.dumps(result,ensure_ascii=False))
         return result
 
-    def sunforcastByDay(self,stationId):
+    def sunForcastWeek(self,stationId):
 
         result = {}
 
@@ -40,20 +41,11 @@ class sunshine(object):
 
         for list in response:
             sunshine = (list['sunshine'])
-         #   variance = (list['variance_rain'])
-            timestamp = (list['min_date'])
 
-            exp = 0
-       #     min = 0
-        #    max = 0
             for idx, val in enumerate(sunshine):
-                exp = exp + sunshine[idx][1]
-              #  min = min + variance[idx][1]
-               # max = max + variance[idx][2]
+                exp = sunshine[idx][1]
 
-            result[timestamp] = {'exp' :exp}
-
-     #   print(json.dumps(result, ensure_ascii=False))
+                result[val[0]] = {'exp' :exp}
 
         return result
 
@@ -117,7 +109,7 @@ class sunshine(object):
          #   result[timestamp] = {'exp': exp}
         return result
 
-    def sunLast3Days(self,stationId):
+    def sunHistory3d(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
@@ -127,13 +119,13 @@ class sunshine(object):
 
         for idx, val in enumerate(sunshine):
           #  print(idx, val[0], val[1], qnh[idx][1], qff[idx][1], hpaA[idx][1], hpaB[idx][1])
-            x = {'min':val[1]}
+            x = {'sun':val[1]}
             result[val[0]] = x
 
-        print(json.dumps(result, ensure_ascii=False))
+    #    print(json.dumps(result, ensure_ascii=False))
         return result
 
-    def sunLastYear(self,stationId):
+    def sunHistory1y(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
@@ -143,8 +135,8 @@ class sunshine(object):
 
         for idx, val in enumerate(sunshine):
           #  print(idx, val[0], val[1], qnh[idx][1], qff[idx][1], hpaA[idx][1], hpaB[idx][1])
-            x = {'min':val[1]}
+            x = {'sun':val[1]}
             result[val[0]] = x
 
-        print(json.dumps(result, ensure_ascii=False))
+        #print(json.dumps(result, ensure_ascii=False))
         return result

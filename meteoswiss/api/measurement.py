@@ -14,22 +14,32 @@ _classLogger = logging.getLogger(__name__)
 
 class measurement(base.apiClient):
     _storeDanger = {}
+    _measuresHistorical = {}
+    _prediction = {}
 
     def __init__(self):
         self._url = 'https://www.meteoswiss.admin.ch'
 
     def getPrediction(self,stationId='800100'):
-        #        page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
-        page = requests.get(self._url)
-        tree = html.fromstring(page.content)
 
-        response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
-        path = (response[0].attrib['data-json-url'])
+        if self._prediction.get('UPDATE',0) + 600 > time.time():
+            return self._prediction.get('DATA',False)
 
-      #  print(path)
-       # print(self._url + path.replace('800100',str(stationId),1))
+        else:
 
-        return self._url + path.replace('800100',str(stationId),1)
+            page = requests.get(self._url)
+            tree = html.fromstring(page.content)
+
+            response = tree.xpath('//div[@class="overview__local-forecast clearfix"]')
+            path = (response[0].attrib['data-json-url'])
+
+            _data = self._url + path.replace('800100',str(stationId),1)
+
+            self._prediction['DATA'] = _data
+
+        self._prediction['UPDATE'] = time.time()
+
+        return self._prediction['DATA']
 
     def getMeasurementByStationCode(self,station='BER'):
        # print(stationId)
@@ -58,75 +68,54 @@ class measurement(base.apiClient):
      #   print(response)
         return url
 
+
     def getMeasurementV3(self,stationId='800100'):
 
-        if os.path.exists('data.txt'):
-            print('file does exist')
-
-            if time.time() - os.path.getmtime('data.txt')> 300:
-                print('read file')
-            #  with open('data.txt', 'w') as outfile:
-           #     json.dump(mesurementData, outfile)
-                with open('data.txt') as json_file:
-                    measurementData = json.load(json_file)
-            else:
-                measurementData = self.updateData(stationId)
+        if self._measuresHistorical.get('UPDATE',0) + 600 > time.time():
+          #  print('no update')
+            return self._measuresHistorical.get('DATA',False)
         else:
-            measurementData = self.updateData(stationId)
+           # print('update')
+            #self._measuresHistorical['DATA'] ={}
+            _page = requests.get(self._url + '/home/messwerte.html')
+            soup = BeautifulSoup(_page.content,'lxml')
 
-        return measurementData
+            _tag = soup.find(id="measurementv3-dataview-tmpl")
 
+            _subtag = BeautifulSoup(_tag.string,'lxml')
+            _content = _subtag.find(re.compile("measurementv3-detailview"))
 
-    def updateData(self,stationId='800100'):
-        print('file does not exist')
-        mesurementData = {}
-        page = requests.get(self._url + '/home/messwerte.html')
-        tree = html.fromstring(page.content)
-
-        result = tree.get_element_by_id('measurementv3-dataview-tmpl')
-       # print(type(result))
-        _html= result.text_content().encode('utf-8')
-        _html = _html.decode("utf-8")
-
-        regex="\/product\/output\/measured-values-v3\/map\/version__[0-9]{6,8}_[0-9]{2,4}/en/chartPaths.json"
-
-        result = re.search(regex,_html)
-
-        if result:
-            path = result.group(0)
+            _path = _content['data-details-json']
 
             station_id = self.getStation(stationId)['station_id']
-            response = self.getAPIcall(self._url + path)['params']
+            response = self.getAPIcall(self._url + _path)['params']
+      #      print(response)
 
-          #  mesurementData['measurementStation'] = response
-            for key1, item1 in response.items():
-               # print(key1)
-                dictTemp = {}
-                for key2, path in item1.items():
+            self._measuresHistorical['DATA'] = {}
+            for _key1, _item1 in response.items():
 
-                    path = path.replace('% selection.station %',station_id,1)
-                   # print('path',path)
-                   # print(key2, path)
-                   # t = os.path.getmtime('data.txt')
-                    #print('time',t)
-                    response = self.getAPIcall(self._url + path)['series']
-                    dictTemp[key2] = response
-                    #print(dictTemp)
+            # print(key1)
+                _dictTemp = {}
+                for _key2, _path in _item1.items():
+                    _path = _path.replace('% selection.station %', station_id, 1)
+                    try:
+                        response = self.getAPIcall(self._url + _path)['series']
+                 #       print('get files',self._url + _path )
+                    except:
+                        print('Failed to get file from server %s',self._url + _path)
+                        response = 0
+                    _dictTemp[_key2] = response
+             #       print(_key1)
 
-                mesurementData[key1]= dictTemp
-               # print('x',mesurementData)
-           # print(response)
-       # print(json.dumps(result, ensure_ascii=False))
-       # print( json.dumps(mesurementData, ensure_ascii=False))
+                self._measuresHistorical['DATA'][_key1] = _dictTemp
 
-        with open('data.txt', 'w') as outfile:
-            json.dump(mesurementData, outfile)
-        #print('Return Date',mesurementData)
-        return mesurementData
+        self._measuresHistorical['UPDATE'] = time.time()
+
+        return self._measuresHistorical['DATA']
+
 
     def getWarnRegion(self,stationID='800100'):
         return self.getStation(stationID)['warn_region_ids']
-
 
     def getWarning(self,stationID='800100'):
         _page = requests.get(self._url + '/home.html?tab=alarm')

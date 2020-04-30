@@ -12,7 +12,7 @@ from meteoswiss.api.humidity import humidity
 from meteoswiss.api.measurement import measurement
 from meteoswiss.api.warning import warning
 
-class meteoswissApi(location,
+class meteoswiss(location,
                     measurement,
                     warning,
                     rain,

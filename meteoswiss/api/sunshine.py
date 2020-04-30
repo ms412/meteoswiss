@@ -9,7 +9,7 @@ _classLogger = logging.getLogger(__name__)
 class sunshine(object):
 
 
-    def sunforcastToday(self,stationId):
+    def sunForcastToday(self,stationId):
 
         result = {}
 
@@ -64,7 +64,7 @@ class sunshine(object):
         return result
 
 
-    def sunRiseForcast5Days(self,stationId):
+    def sunRiseForcast5(self,stationId):
 
         result = {}
 
@@ -74,7 +74,7 @@ class sunshine(object):
        # print(response['graph']['sunset'])
         return response['graph']['sunset']
 
-    def sunSetForcast5Days(self,stationId):
+    def sunSetForcast(self,stationId):
 
         result = {}
 

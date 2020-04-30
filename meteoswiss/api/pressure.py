@@ -31,7 +31,7 @@ class pressure(object):
       #  print(json.dumps(result, ensure_ascii=False))
         return result
 
-     def pressureLast3Days(self,stationId):
+     def pressureHistory3d(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)
@@ -54,7 +54,7 @@ class pressure(object):
       #  print(json.dumps(result, ensure_ascii=False))
         return result
 
-     def pressureLastYear(self,stationId):
+     def pressureHistory1y(self,stationId):
 
         result = {}
         response = self.getMeasurementV3(stationId)

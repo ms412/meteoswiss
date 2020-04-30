@@ -1,4 +1,7 @@
 
+# Version 0.8
+# last change 30.4.2020
+
 from meteoswiss.api.location import location
 from meteoswiss.api.rain import rain
 from meteoswiss.api.temperature import temperature

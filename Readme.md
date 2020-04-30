@@ -1,6 +1,9 @@
 
 API to query data from https://www.meteoswiss.admin.ch
-This library does not use documented interfaces. The calls are used either on the webpage or within the Android app. Each call can be subject of change at any time.
+
+This library doesn't use documented interfaces. This library use calls by web scraping or calls used by the Android app of Swiss Meteo. 
+Those calls can be subject of change at any time!
+
 
 
 
